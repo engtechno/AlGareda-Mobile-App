@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface algaredaTests : XCTestCase
+@interface AlGaredaTests : XCTestCase
 
 @end
 
-@implementation algaredaTests
+@implementation AlGaredaTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

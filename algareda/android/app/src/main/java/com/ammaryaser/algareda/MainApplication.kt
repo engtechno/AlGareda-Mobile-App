@@ -1,4 +1,4 @@
-package com.algareda
+package com.ammaryaser.algareda
 
 import android.app.Application
 import com.facebook.react.PackageList

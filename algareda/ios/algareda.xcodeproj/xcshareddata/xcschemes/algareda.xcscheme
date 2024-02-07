@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "algareda.app"
-               BlueprintName = "algareda"
-               ReferencedContainer = "container:algareda.xcodeproj">
+               BuildableName = "AlGareda.app"
+               BlueprintName = "AlGareda"
+               ReferencedContainer = "container:AlGareda.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "algaredaTests.xctest"
-               BlueprintName = "algaredaTests"
-               ReferencedContainer = "container:algareda.xcodeproj">
+               BuildableName = "AlGaredaTests.xctest"
+               BlueprintName = "AlGaredaTests"
+               ReferencedContainer = "container:AlGareda.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "algareda.app"
-            BlueprintName = "algareda"
-            ReferencedContainer = "container:algareda.xcodeproj">
+            BuildableName = "AlGareda.app"
+            BlueprintName = "AlGareda"
+            ReferencedContainer = "container:AlGareda.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "algareda.app"
-            BlueprintName = "algareda"
-            ReferencedContainer = "container:algareda.xcodeproj">
+            BuildableName = "AlGareda.app"
+            BlueprintName = "AlGareda"
+            ReferencedContainer = "container:AlGareda.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
