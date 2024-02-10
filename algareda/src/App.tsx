@@ -1,17 +1,13 @@
 import React, {useEffect} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme,
-} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import BootSplash from 'react-native-bootsplash';
+import {Provider} from 'react-redux';
+
+// Store
+import {store} from './store';
 
 // Navigation
-import BottomNavigation from './navigator/BottomNavigation';
+import MainNavigator from './navigator/MainNavigator';
 
 const App = () => {
   const onLoaded = async () => {
@@ -24,7 +20,9 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <BottomNavigation />
+      <Provider store={store}>
+        <MainNavigator />
+      </Provider>
     </NavigationContainer>
   );
 };
