@@ -2,10 +2,14 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 export interface AppState {
   news: any[];
+  searchText: string;
+  totalResults: number;
 }
 
 const initialState: AppState = {
   news: [],
+  searchText: '',
+  totalResults: 0,
 };
 
 export const appSlice = createSlice({
@@ -15,8 +19,14 @@ export const appSlice = createSlice({
     setNews: (state, action: PayloadAction<any[]>) => {
       state.news = action.payload;
     },
+    setSearchText: (state, action: PayloadAction<string>) => {
+      state.searchText = action.payload;
+    },
+    setTotalResults: (state, action: PayloadAction<number>) => {
+      state.totalResults = action.payload;
+    },
   },
 });
 
-export const {} = appSlice.actions;
+export const {setNews, setSearchText, setTotalResults} = appSlice.actions;
 export default appSlice.reducer;

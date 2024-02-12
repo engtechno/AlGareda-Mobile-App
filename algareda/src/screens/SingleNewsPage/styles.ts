@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   },
   thumb: {
     width: '100%',
+    backgroundColor: '#ccc',
   },
   content: {
     paddingVertical: 20,
