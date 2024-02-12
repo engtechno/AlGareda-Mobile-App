@@ -1,5 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {useTranslation} from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,6 +17,8 @@ import styles from './styles';
 import {Colors} from '../../styles/global';
 
 const BottomNavigation = () => {
+  const {t} = useTranslation();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -25,7 +28,7 @@ const BottomNavigation = () => {
         tabBarActiveTintColor: Colors.primary,
       }}>
       <Tab.Screen
-        name="News"
+        name={t('NEWS_PAGE_TITLE')}
         component={NewsScreen}
         options={{
           tabBarIcon: ({focused}) => (
@@ -39,7 +42,7 @@ const BottomNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name={t('SETTINGS_PAGE_TITLE')}
         component={SettingsScreen}
         options={{
           tabBarIcon: ({focused}) => (

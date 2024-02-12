@@ -1,33 +1,83 @@
 import React from 'react';
-import {Switch, Text, Touchable, TouchableOpacity, View} from 'react-native';
+import {Switch, Text, TouchableOpacity, View} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+import i18next from '../../services/i18next';
+import {useTranslation} from 'react-i18next';
+
+// Store
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import {setLanguage, setMode} from '../../store/appSlice';
 
 // Styles
 import globalStyles from '../../styles/global';
 import styles from './styles';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+// Models
+import {RootStackParamList} from '../../models/navigation.model';
 
 const Settings = () => {
+  const dispatch = useAppDispatch();
+  const {t} = useTranslation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const {language, mode} = useAppSelector(state => state.app);
+
+  const languages = [
+    {
+      name: 'English',
+      code: 'en',
+    },
+    {
+      name: 'Spanish',
+      code: 'es',
+    },
+  ];
+
   return (
     <View style={globalStyles.page}>
-      <Text style={globalStyles.pageTitle}>Settings</Text>
+      <Text style={globalStyles.pageTitle}>{t('SETTINGS_PAGE_TITLE')}</Text>
 
       <View style={styles.settings}>
         <View style={styles.darkMode}>
-          <Text style={styles.darkModeText}>Dark Theme</Text>
-          <Switch />
+          <Text style={styles.darkModeText}>{t('DARK_MODE')}</Text>
+          <Switch
+            value={mode === 'dark'}
+            onValueChange={() => {
+              dispatch(setMode(mode === 'dark' ? 'light' : 'dark'));
+              AsyncStorage.setItem('mode', mode === 'dark' ? 'light' : 'dark');
+            }}
+          />
         </View>
       </View>
 
       <View style={styles.language}>
-        <Text style={styles.languageText}>Language</Text>
+        <Text style={styles.languageText}>{t('LANGUAGE')}</Text>
 
         <View style={styles.options}>
-          <TouchableOpacity style={[styles.lang, styles.selected]}>
-            <Text style={[styles.langText, styles.selected]}>English</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.lang}>
-            <Text style={styles.langText}>العربية</Text>
-          </TouchableOpacity>
+          {languages.map(lang => (
+            <TouchableOpacity
+              key={lang.code}
+              style={[
+                styles.lang,
+                language === lang.code ? styles.selected : {},
+              ]}
+              onPress={() => {
+                dispatch(setLanguage(lang.code as 'en' | 'es'));
+                AsyncStorage.setItem('language', lang.code);
+                i18next.changeLanguage(lang.code);
+                navigation.navigate('BottomNavigation');
+              }}>
+              <Text
+                style={[
+                  styles.langText,
+                  language === lang.code ? styles.selectedText : {},
+                ]}>
+                {lang.name}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </View>
       </View>
     </View>

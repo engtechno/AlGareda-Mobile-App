@@ -1,14 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  RefreshControl,
-  View,
-  Alert,
-  FlatList,
-} from 'react-native';
+import {Text, RefreshControl, View, Alert, FlatList} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 // Store
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
@@ -31,7 +23,11 @@ import SearchBar from '../../components/SearchBar';
 
 const News = () => {
   const dispatch = useAppDispatch();
-  const {news, searchText, totalResults} = useAppSelector(state => state.app);
+  const {t} = useTranslation();
+
+  const {news, searchText, totalResults, language} = useAppSelector(
+    state => state.app,
+  );
 
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -53,18 +49,20 @@ const News = () => {
   };
 
   useEffect(() => {
-    fetchNews();
-  }, []);
+    if (language) fetchNews({language});
+  }, [language]);
 
   useEffect(() => {
-    dispatch(setNews([]));
-    fetchNews({q: searchText});
-    setPage(1);
+    if (searchText) {
+      dispatch(setNews([]));
+      fetchNews({q: searchText});
+      setPage(1);
+    }
   }, [searchText]);
 
   return (
     <View style={globalStyles.page}>
-      <Text style={globalStyles.pageTitle}>News</Text>
+      <Text style={globalStyles.pageTitle}>{t('NEWS_PAGE_TITLE')}</Text>
 
       <SearchBar />
 
@@ -80,7 +78,10 @@ const News = () => {
         data={news}
         keyExtractor={item => item.title}
         refreshControl={
-          <RefreshControl refreshing={loading} onRefresh={fetchNews} />
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={() => fetchNews({language: language || 'en'})}
+          />
         }
         renderItem={item => (
           <View style={styles.wrapper}>

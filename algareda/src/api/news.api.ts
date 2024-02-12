@@ -15,7 +15,7 @@ export const getNews = async (options?: NewsAPIParams) => {
   try {
     const response = await api().get(
       `/everything?pageSize=20${params}${
-        !options?.q ? '&sources=engadget,bbc-news' : ''
+        !options?.q ? '&sources=engadget,bbc-news,cnn-es' : ''
       }`,
     );
     return response.data;

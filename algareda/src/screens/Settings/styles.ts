@@ -40,6 +40,8 @@ const styles = StyleSheet.create({
   },
   selected: {
     backgroundColor: Colors.primary,
+  },
+  selectedText: {
     color: '#fff',
   },
   langText: {

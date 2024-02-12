@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import BootSplash from 'react-native-bootsplash';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 // Navigator
@@ -10,9 +11,22 @@ import SingleNewsPage from '../../screens/SingleNewsPage';
 // Models
 import {RootStackParamList} from '../../models/navigation.model';
 
+// Hooks
+import useInit from '../../hooks/useInit';
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const MainNavigator = () => {
+  const {done} = useInit();
+
+  const onLoaded = async () => {
+    if (done) await BootSplash.hide({fade: true});
+  };
+
+  useEffect(() => {
+    onLoaded();
+  }, [done]);
+
   return (
     <Stack.Navigator
       screenOptions={{
