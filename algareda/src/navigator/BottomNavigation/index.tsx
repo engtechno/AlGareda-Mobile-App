@@ -2,6 +2,9 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 
+// Store
+import {useAppSelector} from '../../store/hooks';
+
 const Tab = createBottomTabNavigator();
 
 // Assets
@@ -13,11 +16,19 @@ import NewsScreen from '../../screens/News';
 import SettingsScreen from '../../screens/Settings';
 
 // Styles
-import styles from './styles';
-import {Colors} from '../../styles/global';
+import useStyles from './useStyles';
+import useGlobalStyle from '../../hooks/useGlobalStyle';
 
 const BottomNavigation = () => {
   const {t} = useTranslation();
+  const {Colors} = useGlobalStyle();
+  const {styles} = useStyles();
+  const {mode} = useAppSelector(state => state.app);
+
+  const getIconColor = (focused: boolean, mode: 'light' | 'dark') => {
+    if (!focused) return '#8F8F8F';
+    return mode === 'light' ? Colors.primary : '#427fdb';
+  };
 
   return (
     <Tab.Navigator
@@ -25,7 +36,9 @@ const BottomNavigation = () => {
         headerShown: false,
         tabBarStyle: styles.tabBarStyle,
         tabBarLabelStyle: styles.tabBarLabelStyle,
-        tabBarActiveTintColor: Colors.primary,
+        tabBarActiveTintColor: mode === 'light' ? Colors.primary : '#427fdb',
+        tabBarInactiveTintColor:
+          mode === 'light' ? '#636363' : Colors.dark.text,
       }}>
       <Tab.Screen
         name={t('NEWS_PAGE_TITLE')}
@@ -35,7 +48,7 @@ const BottomNavigation = () => {
             <NewsIcon
               width={24}
               height={24}
-              fill={focused ? Colors.primary : '#8F8F8F'}
+              fill={getIconColor(focused, mode)}
               style={styles.tabBarIcon}
             />
           ),
@@ -49,7 +62,7 @@ const BottomNavigation = () => {
             <SettingsIcon
               width={24}
               height={24}
-              fill={focused ? Colors.primary : '#8F8F8F'}
+              fill={getIconColor(focused, mode)}
               style={styles.tabBarIcon}
             />
           ),

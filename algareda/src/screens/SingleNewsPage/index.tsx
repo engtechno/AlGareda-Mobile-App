@@ -19,8 +19,8 @@ import {RootStackParamList} from '../../models/navigation.model';
 import {ISingleNews} from '../../models/news.model';
 
 // Styles
-import styles from './styles';
-import globalStyles from '../../styles/global';
+import useStyles from './useStyles';
+import useGlobalStyle from '../../hooks/useGlobalStyle';
 
 // Assets
 import ArrowLeftIcon from '../../assets/media/svg/arrow-left-icon.svg';
@@ -31,6 +31,10 @@ import {formatDate} from '../../utils/function.util';
 const SingleNewsPage = () => {
   const IMAGE_HEIGHT = 400;
   const [showBlur, setShowBlur] = useState(false);
+  const [goBackClicked, setGoBackClicked] = useState(false);
+
+  const {globalStyles} = useGlobalStyle();
+  const {styles} = useStyles();
 
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -86,12 +90,20 @@ const SingleNewsPage = () => {
     opacity.value = withTiming(1, {
       duration: 700,
     });
+    ``;
   }, []);
+
+  useEffect(() => {
+    if (!showBlur && goBackClicked) navigation.goBack();
+  }, [showBlur]);
 
   return (
     <View style={styles.pageContainer}>
       <TouchableOpacity
-        onPress={() => navigation.goBack()}
+        onPress={() => {
+          setShowBlur(false);
+          setGoBackClicked(true);
+        }}
         style={styles.backButton}>
         <Animated.View style={[styles.backButtonBody, backButtonAnimatedStyle]}>
           <ArrowLeftIcon />

@@ -10,7 +10,7 @@ import {setNews, setTotalResults} from '../../store/appSlice';
 import {getNews} from '../../api/news.api';
 
 // Styles
-import globalStyles from '../../styles/global';
+import useGlobalStyle from '../../hooks/useGlobalStyle';
 import styles from './styles';
 
 // Components
@@ -24,6 +24,7 @@ import SearchBar from '../../components/SearchBar';
 const News = () => {
   const dispatch = useAppDispatch();
   const {t} = useTranslation();
+  const {globalStyles} = useGlobalStyle();
 
   const {news, searchText, totalResults, language} = useAppSelector(
     state => state.app,
@@ -48,16 +49,22 @@ const News = () => {
     dispatch(setTotalResults(res.totalResults));
   };
 
+  const handleSearch = () => {
+    if (searchText) {
+      dispatch(setNews([]));
+      fetchNews({q: searchText});
+      return setPage(1);
+    }
+
+    fetchNews({language: language || 'en'});
+  };
+
   useEffect(() => {
     if (language) fetchNews({language});
   }, [language]);
 
   useEffect(() => {
-    if (searchText) {
-      dispatch(setNews([]));
-      fetchNews({q: searchText});
-      setPage(1);
-    }
+    handleSearch();
   }, [searchText]);
 
   return (

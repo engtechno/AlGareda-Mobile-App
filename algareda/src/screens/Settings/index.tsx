@@ -10,8 +10,8 @@ import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {setLanguage, setMode} from '../../store/appSlice';
 
 // Styles
-import globalStyles from '../../styles/global';
-import styles from './styles';
+import useGlobalStyle from '../../hooks/useGlobalStyle';
+import useStyles from './useStyles';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 // Models
@@ -20,6 +20,8 @@ import {RootStackParamList} from '../../models/navigation.model';
 const Settings = () => {
   const dispatch = useAppDispatch();
   const {t} = useTranslation();
+  const {globalStyles} = useGlobalStyle();
+  const {styles} = useStyles();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const {language, mode} = useAppSelector(state => state.app);
