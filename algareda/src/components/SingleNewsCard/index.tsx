@@ -26,7 +26,7 @@ const SingleNewsCard: FC<SingleNewsCardProps> = ({data}) => {
       style={styles.singleBox}
       onPress={() =>
         navigation.navigate('SingleNews', {
-          data,
+          title: data.title,
         })
       }>
       <View style={styles.overlay}>

@@ -14,6 +14,9 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RouteProp, useNavigation} from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native';
 
+// Store
+import {useAppSelector} from '../../store/hooks';
+
 // Models
 import {RootStackParamList} from '../../models/navigation.model';
 import {ISingleNews} from '../../models/news.model';
@@ -33,16 +36,22 @@ const SingleNewsPage = () => {
   const [showBlur, setShowBlur] = useState(false);
   const [goBackClicked, setGoBackClicked] = useState(false);
 
+  const {news} = useAppSelector(state => state.app);
+
   const {globalStyles} = useGlobalStyle();
   const {styles} = useStyles();
 
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const route = useRoute<RouteProp<{data: {data: ISingleNews}}, 'data'>>();
+  const route = useRoute<RouteProp<{data: {title: string}}, 'data'>>();
 
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollRef);
   const opacity = useSharedValue(0);
+
+  const article: ISingleNews = news.find(
+    (item: ISingleNews) => item.title === route.params.title,
+  );
 
   const imageAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -81,8 +90,6 @@ const SingleNewsPage = () => {
   });
 
   useEffect(() => {
-    console.log('route.params', route.params);
-
     setTimeout(() => {
       setShowBlur(true);
     }, 300);
@@ -113,7 +120,7 @@ const SingleNewsPage = () => {
       <Animated.ScrollView ref={scrollRef}>
         <Animated.Image
           source={{
-            uri: route.params?.data.urlToImage,
+            uri: article.urlToImage,
           }}
           style={[
             styles.thumb,
@@ -126,13 +133,9 @@ const SingleNewsPage = () => {
 
         <View style={[globalStyles.page, styles.content]}>
           <Animated.View style={[styles.headBox, {opacity: opacity}]}>
-            <Text style={styles.date}>
-              {formatDate(route.params.data.publishedAt)}
-            </Text>
-            <Text style={styles.title}>{route.params.data.title}</Text>
-            <Text style={styles.author}>
-              Published by {route.params.data.author}
-            </Text>
+            <Text style={styles.date}>{formatDate(article.publishedAt)}</Text>
+            <Text style={styles.title}>{article.title}</Text>
+            <Text style={styles.author}>Published by {article.author}</Text>
 
             {showBlur && (
               <BlurView
@@ -145,7 +148,7 @@ const SingleNewsPage = () => {
             )}
           </Animated.View>
 
-          <Text style={styles.contentText}>{route.params.data.content}</Text>
+          <Text style={styles.contentText}>{article.content}</Text>
         </View>
       </Animated.ScrollView>
     </View>

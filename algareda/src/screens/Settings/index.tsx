@@ -15,7 +15,7 @@ import useStyles from './useStyles';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 // Models
-import {RootStackParamList} from '../../models/navigation.model';
+import {BottomTabParamList} from '../../models/navigation.model';
 
 const Settings = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ const Settings = () => {
   const {globalStyles} = useGlobalStyle();
   const {styles} = useStyles();
   const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    useNavigation<NativeStackNavigationProp<BottomTabParamList>>();
   const {language, mode} = useAppSelector(state => state.app);
 
   const languages = [
@@ -69,7 +69,7 @@ const Settings = () => {
                 dispatch(setLanguage(lang.code as 'en' | 'es'));
                 AsyncStorage.setItem('language', lang.code);
                 i18next.changeLanguage(lang.code);
-                navigation.navigate('BottomNavigation');
+                navigation.navigate('News');
               }}>
               <Text
                 style={[

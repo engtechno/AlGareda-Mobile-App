@@ -41,9 +41,10 @@ const BottomNavigation = () => {
           mode === 'light' ? '#636363' : Colors.dark.text,
       }}>
       <Tab.Screen
-        name={t('NEWS_PAGE_TITLE')}
+        name="News"
         component={NewsScreen}
         options={{
+          title: t('NEWS_PAGE_TITLE'),
           tabBarIcon: ({focused}) => (
             <NewsIcon
               width={24}
@@ -55,9 +56,10 @@ const BottomNavigation = () => {
         }}
       />
       <Tab.Screen
-        name={t('SETTINGS_PAGE_TITLE')}
+        name="Settings"
         component={SettingsScreen}
         options={{
+          title: t('SETTINGS_PAGE_TITLE'),
           tabBarIcon: ({focused}) => (
             <SettingsIcon
               width={24}
