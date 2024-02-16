@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Text, RefreshControl, View, Alert, FlatList} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import {useTranslation} from '../../../node_modules/react-i18next';
 
 // Store
 import {useAppDispatch, useAppSelector} from '../../store/hooks';

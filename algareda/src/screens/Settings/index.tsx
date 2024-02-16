@@ -3,7 +3,7 @@ import {Switch, Text, TouchableOpacity, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import i18next from '../../services/i18next';
-import {useTranslation} from 'react-i18next';
+import {useTranslation} from '../../../node_modules/react-i18next';
 
 // Store
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
