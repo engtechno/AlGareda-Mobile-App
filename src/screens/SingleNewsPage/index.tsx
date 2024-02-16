@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {BackHandler, Text, TouchableOpacity, View} from 'react-native';
 import {BlurView} from '@react-native-community/blur';
 import Animated, {
   useSharedValue,
@@ -94,15 +94,26 @@ const SingleNewsPage = () => {
       setShowBlur(true);
     }, 300);
 
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => {
+        setShowBlur(false);
+        setGoBackClicked(true);
+        return true;
+      },
+    );
+
     opacity.value = withTiming(1, {
       duration: 700,
     });
     ``;
+
+    return () => backHandler.remove();
   }, []);
 
   useEffect(() => {
     if (!showBlur && goBackClicked) navigation.goBack();
-  }, [showBlur]);
+  }, [showBlur, goBackClicked]);
 
   return (
     <View style={styles.pageContainer}>
