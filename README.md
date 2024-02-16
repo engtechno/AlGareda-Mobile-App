@@ -2,6 +2,13 @@
 
 Welcome to the AlGareda Mobile App repository! AlGareda is a basic Mobile App that illustrates how we make apps at [Eng Techno](https://engtechnos.com/).
 
+
+
+Home | Settings | Single Article
+--- | --- | ---
+![Home-Light](https://github.com/engtechno/AlGareda-Mobile-App/blob/main/screenshots/Home-Light.png?raw=true)  | ![Settings-Light](https://github.com/engtechno/AlGareda-Mobile-App/blob/main/screenshots/Settings-Light.png?raw=true) | ![Single-Light](https://github.com/engtechno/AlGareda-Mobile-App/blob/main/screenshots/Single-Light.png?raw=true)
+![Home-Dark](https://github.com/engtechno/AlGareda-Mobile-App/blob/main/screenshots/Home-Dark.png?raw=true)  | ![Settings-Dark](https://github.com/engtechno/AlGareda-Mobile-App/blob/main/screenshots/Settings-Dark.png?raw=true) | ![Single-Dark](https://github.com/engtechno/AlGareda-Mobile-App/blob/main/screenshots/Single-Dark.png?raw=true)
+
 ## About the App 📱
 
 AlGareda Mobile App is a cutting-edge news platform that brings you the latest stories, updates, and insights from around the globe. Tailored for the modern reader, AlGareda offers a personalized news experience, allowing you to stay informed anytime, anywhere.
