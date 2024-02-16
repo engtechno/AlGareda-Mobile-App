@@ -1,47 +1,79 @@
-[[_TOC_]]
+This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
----
+# Getting Started
 
-:scroll: **START**
+>**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
+## Step 1: Start the Metro Server
 
-### Task description
+First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
-Develop a Newsfeed mobile application using **React Native** and **Typescript**. 
-The application should fetch data from a public source and display the news articles. Use https://newsapi.org/ or another public source. 
+To start Metro, run the following command from the _root_ of your React Native project:
 
-Main functionalities:
+```bash
+# using npm
+npm start
 
-- Have a main screen that shows a list of News article headings and pictures.
-- Clicking on a heading should open a detailed screen with the whole news text, bigger picture, and meta data like author, creation date etc.
-- On top of the main screen, there should be a Search field that will dynamically filter the news by the typed word.
-- The main screen should have a Pull to refresh the news on the screen.
-- Write type definitions for the News DTOs. Clean your app of `any` types.
+# OR using Yarn
+yarn start
+```
 
----
+## Step 2: Start your Application
 
-### Requirements
+Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
-While implementing your solution **please take care of the following requirements**: 
+### For Android
 
-#### Functional requirements
+```bash
+# using npm
+npm run android
 
-- Internationalization:
-  - Add Multiple language support: English and 1 more of your choice.
-  - Introduce a bottom tab menu with 2 Menu items: "News" and "Settings".
-  - Have a language switcher in the Settings.
-- Dark mode:
-  - Add dark mode support for the application with different colors for dark background and light text.
-  - Have a mode switcher in the Settings that changes the styles without a full restart.
-- Add support for deep linking. Opening a deep link to the application with a specific news article should directly open the application focused on that article.
+# OR using Yarn
+yarn android
+```
 
-#### Non-functional requirements
+### For iOS
 
-- The project must be buildable via React Native CLI or Expo and runnable locally;
-- The project must have Unit tests;
-- The project must have a README file with build/run/test instructions;
-- Follow the principals of [Conventional Commit Messages](https://www.conventionalcommits.org) and [Atomic Change Commits](https://dev.to/samuelfaure/how-atomic-git-commits-dramatically-increased-my-productivity-and-will-increase-yours-too-4a84).
+```bash
+# using npm
+npm run ios
 
----
+# OR using Yarn
+yarn ios
+```
 
-:scroll: **END** 
+If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+
+This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+
+## Step 3: Modifying your App
+
+Now that you have successfully run the app, let's modify it.
+
+1. Open `App.tsx` in your text editor of choice and edit some lines.
+2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+
+   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+
+## Congratulations! :tada:
+
+You've successfully run and modified your React Native App. :partying_face:
+
+### Now what?
+
+- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
+- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+
+# Troubleshooting
+
+If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+
+# Learn More
+
+To learn more about React Native, take a look at the following resources:
+
+- [React Native Website](https://reactnative.dev) - learn more about React Native.
+- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
+- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
+- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
+- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
